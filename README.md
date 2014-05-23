@@ -3,9 +3,11 @@ juniper_vpn_no_java
 
 run juniper vpn client without the java hassle
 
-juniper_vpn_minimal.spec (from here)
-juniper.sh (from here)
-libncui.so ncdiag ncsvc version.txt (from your IT)
+You need:
+
+juniper_vpn_minimal.spec (from here)<br />
+juniper.sh (from here)<br />
+libncui.so ncdiag ncsvc version.txt (from your IT)<br />
 
 sudo yum -y install rpmdevtools
 
