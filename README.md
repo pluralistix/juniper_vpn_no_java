@@ -11,6 +11,8 @@ libncui.so ncdiag ncsvc version.txt (from your IT)<br />
 
 sudo yum -y install rpmdevtools
 
+rpmdev-setuptree
+
 cd ~/rpmbuild/
 
 copy the spec to SPECS/
