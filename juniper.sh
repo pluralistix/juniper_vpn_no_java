@@ -49,13 +49,15 @@ else
 	fi
         VPN_USER=${VPN_USER:-$USER}
 
+        REALM=$(curl -sL https://$host2connect:$port2connect | sed -rn 's;.*name="realm".*value="(.*)".*;\1;p')
+
         openssl s_client -connect $host2connect":"$port2connect <<<"" 2>&1 | sed -ne '/BEGIN CERTIFICATE/,/END CERTIFICATE/p' | openssl x509 -out ~/cert.der -outform der
 
         stty -echo
         read -p "Password: " passwd; echo
         stty echo
 
-        ./ncsvc -L 5 -l 5 -h $host2connect -u $VPN_USER -p $passwd -r REALM_AD_LDAP -f ~/cert.der > /dev/null 2>&1 &
+        ./ncsvc -L 5 -l 5 -h $host2connect -u $VPN_USER -p $passwd -r $REALM -f ~/cert.der > /dev/null 2>&1 &
         sleep 5;
         if [[ $(ifconfig tun0 > /dev/null 2>&1 ; echo $?) -eq 0 ]]; then
 		echo "connected to $host2connect"
